@@ -7,10 +7,8 @@ function App() {
     <>
       {/* R3F */}
       <Canvas
-        style={{
-          width: "100vw",
-          height: "100vh",
-        }}
+        dpr={ [1, 2] }
+        camera={ {position: [-10, -10, 2]} }
       >
         <Experience/>
       </Canvas>
