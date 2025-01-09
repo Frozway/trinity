@@ -1,6 +1,6 @@
 import {useLoader} from '@react-three/fiber';
 import * as THREE from 'three';
-import {useRef, useState, useEffect} from 'react';
+import {useEffect, useRef, useState} from 'react';
 import {Html, Outlines} from "@react-three/drei";
 import {gsap} from 'gsap';
 
@@ -41,9 +41,8 @@ const Disc = () => {
 
   const handleClick = () => {
     gsap.to(meshRef.current.rotation, {
-      duration: 3,
-      x: isReversed ? 0 : Math.PI * 2,
-      y: isReversed ? 0 : Math.PI * 3,
+      duration: 1.3,
+      y: isReversed ? 0 : Math.PI,
       onComplete: () => setIsReversed(!isReversed),
       ease: 'power3.inOut'
     });
@@ -73,7 +72,7 @@ const Disc = () => {
         occlude={[meshRef]}
         pointerEvents={"none"}
       >
-        <div className="flex flex-col items-center justify-end">
+        <div className="flex flex-col items-center justify-end select-none">
           <h1 className="md:text-4xl fixed z-0 dm-serif-text-regular-italic">Laylow</h1>
           <h1 className="md:text-3xl z-10 great-vibes-regular">Trinity</h1>
         </div>
