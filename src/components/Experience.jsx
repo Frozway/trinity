@@ -26,7 +26,7 @@ const Experience = () => {
 
       <ambientLight intensity={2}/>
       <Environment preset={'warehouse'}/>
-      <Sparkles ref={sparkles} scale={10} count={1000} color={'#00ff00'} size={1} />
+      <Sparkles ref={sparkles} scale={10} count={1000} color={'#00ff00'} size={1} speed={2} />
 
 
       <Float>
