@@ -3,24 +3,29 @@ import * as THREE from 'three';
 import {useEffect, useRef, useState} from 'react';
 import {Html, Outlines} from "@react-three/drei";
 import {gsap} from 'gsap';
+import useStorage, {mainClick, secondClick} from "../services/useStorage.js";
+import {motion} from "motion/react";
+const Disc = (props) => {
 
-const Disc = () => {
+  const {isStarted} = useStorage();
+
   const frontTexture = useLoader(THREE.TextureLoader, '/disc/front.webp');
   const backTexture = useLoader(THREE.TextureLoader, '/disc/back.webp');
   const sideTexture = useLoader(THREE.TextureLoader, '/disc/side.webp');
 
   const meshRef = useRef();
+  const titleRef = useRef();
 
-  const [hovered, setHovered] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
   const [isReversed, setIsReversed] = useState(false);
-  const [size, setSize] = useState({x: 5.5, y: 5.3});
+  const [size, setSize] = useState({x: 5.5, y: 5.3, z: 0.2});
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth < 768) {
-        setSize({x: 3, y: 2.8});
+        setSize({x: 3, y: 2.8, z: 0.1});
       } else {
-        setSize({x: 5.5, y: 5.3});
+        setSize({x: 5.5, y: 5.3, z: 0.2});
       }
     };
 
@@ -40,7 +45,8 @@ const Disc = () => {
   ];
 
   const handleClick = () => {
-    gsap.to(meshRef.current.rotation, {
+    secondClick.play().then(r => r);
+    gsap.to(meshRef.current['rotation'], {
       duration: 1.3,
       y: isReversed ? 0 : Math.PI,
       onComplete: () => setIsReversed(!isReversed),
@@ -51,31 +57,42 @@ const Disc = () => {
   return (
     <mesh
       ref={meshRef}
+      {...props}
       material={materials}
-      geometry={new THREE.BoxGeometry(size.x, size.y, 0.2)}
+      geometry={new THREE.BoxGeometry(size.x, size.y, size.z)}
       onPointerEnter={(event) => {
         document.body.style.cursor = "pointer";
-        setHovered(true);
+        setIsHovered(true);
         event.stopPropagation();
       }}
       onPointerLeave={() => {
         document.body.style.cursor = "auto";
-        setHovered(false);
+        setIsHovered(false);
       }}
       onClick={handleClick}
     >
-      {hovered && <Outlines screenspace thickness={0.08} color={"#399463"}/>}
+      {isHovered && (
+        <>
+          <Outlines screenspace thickness={0.08} color={"#399463"} />
+        </>
+      )}
       <Html
-        scale={1.5}
+        ref={titleRef}
         transform
         position={[0, 0, 0.8]}
         occlude={[meshRef]}
         pointerEvents={"none"}
       >
-        <div className="flex flex-col items-center justify-end select-none">
+        <motion.div
+          initial={{opacity: 0}}
+          animate={{opacity: isHovered ? 0 : 1}}
+          transition={{duration: 0.5}}
+          className="flex flex-col items-center justify-end select-none z-0"
+        >
           <h1 className="md:text-4xl fixed z-0 dm-serif-text-regular-italic">Laylow</h1>
           <h1 className="md:text-3xl z-10 great-vibes-regular">Trinity</h1>
-        </div>
+        </motion.div>
+
       </Html>
     </mesh>
   );
