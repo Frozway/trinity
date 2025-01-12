@@ -21,7 +21,7 @@ const Loader = () => {
         <motion.div
           key={"loader"}
           initial={{opacity: 1}}
-          exit={{opacity: 0, transition: {duration: 2, ease: "easeOut"}}}
+          exit={{opacity: 0, transition: {duration: 1, ease: "easeOut"}}}
           className="flex flex-col items-center justify-center absolute z-50 top-0 text-white text-center size-full backdrop-blur-lg"
         >
           <motion.h1

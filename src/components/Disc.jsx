@@ -3,8 +3,9 @@ import * as THREE from 'three';
 import {useEffect, useRef, useState} from 'react';
 import {Html, Outlines} from "@react-three/drei";
 import {gsap} from 'gsap';
-import useStorage, {mainClick, secondClick} from "../services/useStorage.js";
+import useStorage, {secondClick} from "../services/useStorage.js";
 import {motion} from "motion/react";
+
 const Disc = (props) => {
 
   const {isStarted} = useStorage();
@@ -19,6 +20,19 @@ const Disc = (props) => {
   const [isHovered, setIsHovered] = useState(false);
   const [isReversed, setIsReversed] = useState(false);
   const [size, setSize] = useState({x: 5.5, y: 5.3, z: 0.2});
+
+  const discPosition = {x: 0, y: 0, z: -10};
+
+  useEffect(() => {
+    console.log(isStarted);
+    if(isStarted) {
+      gsap.to(meshRef.current['position'], {
+        duration: 4,
+        z: 0,
+        ease: 'power3.inOut'
+      });
+    }
+  }, [isStarted]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -60,6 +74,7 @@ const Disc = (props) => {
       {...props}
       material={materials}
       geometry={new THREE.BoxGeometry(size.x, size.y, size.z)}
+      position={[discPosition.x, discPosition.y, discPosition.z]}
       onPointerEnter={(event) => {
         document.body.style.cursor = "pointer";
         setIsHovered(true);

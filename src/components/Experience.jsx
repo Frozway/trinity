@@ -3,7 +3,6 @@ import {Environment, Float, Sparkles} from "@react-three/drei";
 import {Perf} from "r3f-perf";
 import {useFrame} from "@react-three/fiber";
 import {easing} from "maath";
-import useStorage from "../services/useStorage.js";
 
 const Experience = () => {
 
