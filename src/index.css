@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Great+Vibes&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bonheur+Royale&family=DM+Serif+Text:ital@0;1&family=Great+Vibes&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -15,6 +15,11 @@ body,
     touch-action: none;
 }
 
+.loader {
+    backdrop-filter: blur(30px);
+}
+
+/* FONTS */
 .great-vibes-regular {
     font-family: "Great Vibes", serif;
     font-weight: 400;
@@ -34,4 +39,10 @@ body,
     font-family: "DM Serif Text", serif;
     font-weight: 400;
     font-style: italic;
+}
+
+.bonheur-royale-regular {
+    font-family: "Bonheur Royale", serif;
+    font-weight: 400;
+    font-style: normal;
 }
