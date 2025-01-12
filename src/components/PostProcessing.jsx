@@ -1,4 +1,4 @@
-import {DotScreen, EffectComposer, Glitch, Scanline} from "@react-three/postprocessing";
+import {EffectComposer, Glitch, Scanline} from "@react-three/postprocessing";
 import {BlendFunction, GlitchMode} from "postprocessing";
 
 const PostProcessing = () => {
@@ -12,15 +12,11 @@ const PostProcessing = () => {
           mode={GlitchMode.SPORADIC}
           ratio={0.85}
         />
-        <DotScreen
-          blendFunction={BlendFunction.LIGHTEN}
-          angle={Math.PI * 0.5}
-          scale={1.2}
-        />
         <Scanline
           blendFunction={BlendFunction.OVERLAY}
-          density={0.8}
-          />
+          density={1.9}
+          opacity={0.2}
+        />
       </EffectComposer>
     </>
   );
