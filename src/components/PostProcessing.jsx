@@ -14,8 +14,8 @@ const PostProcessing = () => {
         />
         <Scanline
           blendFunction={BlendFunction.OVERLAY}
-          density={1.9}
-          opacity={0.2}
+          density={2}
+          opacity={0.3}
         />
       </EffectComposer>
     </>

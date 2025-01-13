@@ -3,12 +3,16 @@ import {Environment, Float, Sparkles} from "@react-three/drei";
 import {Perf} from "r3f-perf";
 import {useFrame} from "@react-three/fiber";
 import {easing} from "maath";
+import useStorage from "../services/useStorage.js";
 
 const Experience = () => {
 
+  const {isAnimating} = useStorage();
+
   useFrame((state, delta) => {
-      easing.damp3(state.camera.position, [-state.pointer.x, state.pointer.y * 2, 5], 0.25, delta) // Move camera
-      state.camera.lookAt(0, 0, 0)
+    if(isAnimating) return;
+    easing.damp3(state.camera.position, [-state.pointer.x * 2, state.pointer.y * 3, 5], 0.25, delta) // Move camera
+    state.camera.lookAt(0, 0, 0)
   })
 
   return (
@@ -17,10 +21,10 @@ const Experience = () => {
 
       <ambientLight intensity={1}/>
       <Environment preset={'warehouse'}/>
-      <Sparkles scale={[30,30,30]} count={1500} color={'#00ff00'} size={3} speed={2}/>
+      <Sparkles opacity={0.3} scale={[30, 30, 30]} count={1500} color={'#00ff00'} size={3} speed={2}/>
 
       <Float speed={2.5}>
-        <Disc position={[0, 0, 0]} />
+        <Disc position={[0, 0, 0]}/>
       </Float>
 
     </>
