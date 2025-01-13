@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import {useEffect, useRef, useState} from 'react';
 import {Html, Outlines} from "@react-three/drei";
 import {gsap} from 'gsap';
-import useStorage, {secondClick} from "../services/useStorage.js";
+import useStorage, {mainClick, secondClick} from "../services/useStorage.js";
 import {motion} from "motion/react";
 
 const Disc = (props) => {
@@ -19,17 +19,17 @@ const Disc = (props) => {
 
   const [isHovered, setIsHovered] = useState(false);
   const [isReversed, setIsReversed] = useState(false);
+  const [isRotating, setIsRotating] = useState(false);
   const [size, setSize] = useState({x: 5.5, y: 5.3, z: 0.2});
 
   const discPosition = {x: 0, y: 0, z: -10};
 
   useEffect(() => {
-    console.log(isStarted);
     if(isStarted) {
       gsap.to(meshRef.current['position'], {
         duration: 4,
         z: 0,
-        ease: 'power3.inOut'
+        ease: 'power3.inOut',
       });
     }
   }, [isStarted]);
@@ -59,11 +59,16 @@ const Disc = (props) => {
   ];
 
   const handleClick = () => {
-    secondClick.play().then(r => r);
+    if(isRotating) return;
+    setIsRotating(true);
+    isReversed ? secondClick.play() : mainClick.play();
     gsap.to(meshRef.current['rotation'], {
       duration: 1.3,
       y: isReversed ? 0 : Math.PI,
-      onComplete: () => setIsReversed(!isReversed),
+      onComplete: () => {
+        setIsReversed(!isReversed);
+        setIsRotating(false);
+      },
       ease: 'power3.inOut'
     });
   };
@@ -99,10 +104,7 @@ const Disc = (props) => {
         pointerEvents={"none"}
       >
         <motion.div
-          initial={{opacity: 0}}
-          animate={{opacity: isHovered ? 0 : 1}}
-          transition={{duration: 0.5}}
-          className="flex flex-col items-center justify-end select-none z-0"
+          className="flex flex-col items-center justify-end select-none z-0 animate-pulse"
         >
           <h1 className="md:text-4xl fixed z-0 dm-serif-text-regular-italic">Laylow</h1>
           <h1 className="md:text-3xl z-10 great-vibes-regular">Trinity</h1>

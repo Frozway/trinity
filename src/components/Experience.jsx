@@ -7,7 +7,7 @@ import {easing} from "maath";
 const Experience = () => {
 
   useFrame((state, delta) => {
-      easing.damp3(state.camera.position, [-state.pointer.x, state.pointer.y * 2, 5], 0.25, delta) // Move camera
+      easing.damp3(state.camera.position, [-state.pointer.x * 2, state.pointer.y * 3, 5], 0.25, delta) // Move camera
       state.camera.lookAt(0, 0, 0)
   })
 
