@@ -11,5 +11,7 @@ secondClick.volume = 0.2;
 
 export default create((set) => ({
   isStarted: false,
+  isAnimating: false,
   setIsStarted: (value) => set({isStarted: value}),
+  setIsAnimating: (value) => set({isAnimating: value}),
 }));

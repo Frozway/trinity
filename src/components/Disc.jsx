@@ -8,7 +8,7 @@ import {motion} from "motion/react";
 
 const Disc = (props) => {
 
-  const {isStarted} = useStorage();
+  const {isStarted, setIsAnimating} = useStorage();
 
   const frontTexture = useLoader(THREE.TextureLoader, '/disc/front.webp');
   const backTexture = useLoader(THREE.TextureLoader, '/disc/back.webp');
@@ -26,10 +26,14 @@ const Disc = (props) => {
 
   useEffect(() => {
     if(isStarted) {
+      setIsAnimating(true);
       gsap.to(meshRef.current['position'], {
         duration: 4,
         z: 0,
         ease: 'power3.inOut',
+        onComplete: () => {
+          setIsAnimating(false);
+        }
       });
     }
   }, [isStarted]);
