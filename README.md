@@ -1,8 +1,34 @@
-# React + Vite
+# Trinity
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> 🌐 / [Live project](https://thibautlfr-exp001.netlify.app/)
 
-Currently, two official plugins are available:
+## Description
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Trinity is a web application using React and @react-three/fiber to create interactive 3D experiences. The project includes post-processing effects and a user interface with links to GitHub and LinkedIn.
+
+## Installation
+
+1. Clone the repository
+```bash
+git clone https://github.com/Frozway/Trinity.git
+cd Trinity
+ ```
+
+2. Install dependencies
+```bash
+npm install
+```
+
+3. Start the development server
+```bash
+npm run dev
+```
+
+_The application will open in your default browser at http://localhost:5173/._ 
+
+## Author
+
+This project was created by Thibaut LEFRANCOIS aka Frozway.
+
+[Github : Frozway](https://github.com/Frozway) <br/>
+[LinkedIn : Thibaut LEFRANCOIS](https://www.linkedin.com/in/thibaut-lefrancois/)
