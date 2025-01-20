@@ -10,7 +10,7 @@ Trinity is a web application using React and @react-three/fiber to create intera
 
 1. Clone the repository
 ```bash
-git clone https://github.com/Frozway/Trinity.git
+git clone https://github.com/thibautlfr/Trinity.git
 cd Trinity
  ```
 

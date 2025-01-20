@@ -8,7 +8,7 @@ const Overlay = () => {
   const {isAnimating, isStarted} = useStorage();
 
   const links = [
-    {href: "https://github.com/Frozway", icon: GitHubIcon, alt: "GitHub"},
+    {href: "https://github.com/thibautlfr", icon: GitHubIcon, alt: "GitHub"},
     {href: "https://www.linkedin.com/in/thibaut-lefrancois/", icon: LinkedInIcon, alt: "LinkedIn"}
   ];
 
